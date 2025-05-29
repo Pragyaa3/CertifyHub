@@ -1,10 +1,15 @@
-import RecipientDashboard from './RecipientDashboard';
+'use client';
 
-export default function DashboardPage() {
+import RecipientDashboard from './RecipientDashboard';
+import withRoleProtection from '@/components/hoc/withRoleProtection';
+import { RECIPIENT_WALLETS } from '@/constants/roles';
+
+function DashboardPage() {
   return (
     <div>
-      <h1 className="text-2xl font-semibold mb-4">Dashboard</h1>
       <RecipientDashboard />
     </div>
   );
 }
+
+export default withRoleProtection(DashboardPage, RECIPIENT_WALLETS);

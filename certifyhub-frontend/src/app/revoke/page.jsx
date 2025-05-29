@@ -1,10 +1,15 @@
-import CertificateRevocationForm from './CertificateRevocationForm';
+'use client';
 
-export default function RevokePage() {
+import CertificateRevocationForm from './CertificateRevocationForm';
+import withRoleProtection from '@/components/hoc/withRoleProtection';
+import { ISSUER_WALLETS } from '@/constants/roles';
+
+function RevokePage() {
   return (
     <div>
-      <h1>Revoke Certificate</h1>
       <CertificateRevocationForm />
     </div>
   );
 }
+
+export default withRoleProtection(RevokePage, ISSUER_WALLETS);

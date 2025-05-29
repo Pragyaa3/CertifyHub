@@ -1,11 +1,15 @@
-import CertificateIssuanceForm from './CertificateIssuanceForm'; 
+'use client';
 
+import CertificateIssuanceForm from './CertificateIssuanceForm';
+import withRoleProtection from '@/components/hoc/withRoleProtection';
+import { ISSUER_WALLETS } from '@/constants/roles';
 
-export default function IssuePage() {
-   return (
+function IssuePage() {
+  return (
     <div>
-      <h1>Issue Certificate</h1>
       <CertificateIssuanceForm />
     </div>
-  )
+  );
 }
+
+export default withRoleProtection(IssuePage, ISSUER_WALLETS);
