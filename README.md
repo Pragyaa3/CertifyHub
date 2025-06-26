@@ -68,16 +68,11 @@ We welcome contributions to CertifyHub! To contribute:
 3. Commit your changes.
 4. Push your branch and submit a pull request.
 
-For more detailed contribution guidelines, please refer to the [CONTRIBUTING.md](https://github.com/Code4All-Club/CertifyHub/blob/main/CONTRIBUTING.md) file.
-
-## License
-
-This project is licensed under the MIT License. See the [LICENSE](https://github.com/Code4All-Club/CertifyHub/blob/main/LICENSE) file for details.
 
 ## Contact
 
 For inquiries or support, please contact:
 
-- Email: [satyamsharma1725@gmail.com](mailto:satyamsharma1725@gmail.com)
+- Email: [pragyahurmade2226@gmail.com](mailto:pragyahurmade2226@gmail.com)
 
 Thank you for your interest in CertifyHub! We hope you find this project valuable for managing digital certifications.
