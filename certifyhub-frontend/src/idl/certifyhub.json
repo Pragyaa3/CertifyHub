@@ -1,0 +1,131 @@
+{
+  "address": "GFTKd92Uvq25Ne9jw7UaiPZPVWJ8Arpfx5H3suYfEnVA",
+  "metadata": {
+    "name": "certifyhub",
+    "version": "0.1.0",
+    "spec": "0.1.0",
+    "description": "Created with Anchor"
+  },
+  "instructions": [
+    {
+      "name": "issue_certificate",
+      "discriminator": [61, 197, 55, 28, 159, 18, 132, 128],
+      "accounts": [
+        {
+          "name": "certificate",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              { "kind": "const", "value": [99, 101, 114, 116, 105, 102, 105, 99, 97, 116, 101] },
+              { "kind": "arg", "path": "certificate_id" }
+            ]
+          }
+        },
+        { "name": "issuer", "writable": true, "signer": true },
+        { "name": "recipient" },
+        { "name": "system_program", "address": "11111111111111111111111111111111" }
+      ],
+      "args": [
+        { "name": "certificate_id", "type": "string" },
+        { "name": "title", "type": "string" },
+        { "name": "description", "type": "string" },
+        { "name": "issue_date", "type": "i64" },
+        { "name": "expiry_date", "type": "i64" },
+        { "name": "metadata_uri", "type": "string" }
+      ]
+    },
+    {
+      "name": "revoke_certificate",
+      "discriminator": [236, 5, 130, 119, 9, 164, 130, 122],
+      "accounts": [
+        { "name": "certificate", "writable": true },
+        { "name": "issuer", "writable": true, "signer": true }
+      ],
+      "args": []
+    }
+  ],
+  "accounts": [
+    {
+      "name": "Certificate",
+      "discriminator": [206, 51, 28, 60, 158, 168, 93, 58],
+      "size": {
+        "kind": "dynamic"
+      },
+      "type": {
+        "kind": "struct",
+        "fields": [
+          { "name": "certificate_id", "type": "string" },
+          { "name": "issuer", "type": "pubkey" },
+          { "name": "recipient", "type": "pubkey" },
+          { "name": "title", "type": "string" },
+          { "name": "description", "type": "string" },
+          { "name": "issue_date", "type": "i64" },
+          { "name": "expiry_date", "type": "i64" },
+          {
+            "name": "status",
+            "type": {
+              "kind": "enum",
+              "variants": [
+                { "name": "Valid" },
+                { "name": "Revoked" },
+                { "name": "Expired" }
+              ]
+            }
+          },
+          { "name": "metadata_uri", "type": "string" }
+        ]
+      }
+    }
+  ],
+  "types": [
+    {
+      "name": "CertificateIssued",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          { "name": "certificate_id", "type": "string" },
+          { "name": "issuer", "type": "pubkey" },
+          { "name": "recipient", "type": "pubkey" }
+        ]
+      }
+    },
+    {
+      "name": "CertificateRevoked",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          { "name": "certificate_id", "type": "string" },
+          { "name": "issuer", "type": "pubkey" }
+        ]
+      }
+    },
+    {
+      "name": "CertificateStatus",
+      "type": {
+        "kind": "enum",
+        "variants": [
+          { "name": "Valid" },
+          { "name": "Revoked" },
+          { "name": "Expired" }
+        ]
+      }
+    }
+  ],
+  "events": [
+    {
+      "name": "CertificateIssued",
+      "discriminator": [62, 59, 26, 207, 181, 234, 201, 52]
+    },
+    {
+      "name": "CertificateRevoked",
+      "discriminator": [99, 180, 224, 20, 200, 221, 133, 47]
+    }
+  ],
+  "errors": [
+    {
+      "code": 6000,
+      "name": "Unauthorized",
+      "msg": "You are not authorized to revoke this certificate."
+    }
+  ]
+}
